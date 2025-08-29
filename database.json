@@ -1,0 +1,15 @@
+{
+  "usuarios": [
+    {
+      "id": "daef",
+      "email": "correo@correo.com",
+      "password": "Contraseña"
+    },
+    {
+      "id": "e07e",
+      "email": "otroCorreo@correo.com",
+      "password": "Contraseña"
+    }
+  ],
+  "registros": []
+}
