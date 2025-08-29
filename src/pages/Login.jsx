@@ -1,12 +1,14 @@
 import "./Login.css";
 import { alertaGeneral } from "../utils/alertas";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 let URI = "http://localhost:3100/usuarios";
 
 const Login = () => {
   const [getEmail, setEmail] = useState("");
   const [getPassword, setPassword] = useState("");
   const [getUsuarios, setUsuarios] = useState([]);
+  let redireccion = useNavigate();
 
   function listarUsuarios() {
     fetch(URI)
@@ -30,11 +32,12 @@ const Login = () => {
   function iniciarSesion() {
     if (buscarUsuario()) {
       alertaGeneral("Bienvenido", "Será redireccionado", "success");
+      redireccion("/home");
     } else {
       alertaGeneral("Error", "Credenciales incorrectas", "error");
     }
   }
-  
+
   return (
     <form class="form">
       <p class="form-title">Sign in to your account</p>
