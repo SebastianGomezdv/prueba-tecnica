@@ -3,12 +3,14 @@
     {
       "id": "daef",
       "email": "correo@correo.com",
-      "password": "Contraseña"
+      "password": "Contraseña",
+      "name": "Jaime Zapata"
     },
     {
       "id": "e07e",
       "email": "otroCorreo@correo.com",
-      "password": "Contraseña"
+      "password": "Contraseña",
+      "name": "Camila Perez"
     }
   ],
   "registros": []

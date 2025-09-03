@@ -1,6 +1,7 @@
 import ErrorNotFound from "../pages/ErrorNotFound";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import ProtegerRutas from "../components/ProtegerRutas";
 export let routerApp = [
   {
     path: "/",
@@ -8,7 +9,7 @@ export let routerApp = [
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <ProtegerRutas proteger={<Home />} />,
   },
   {
     path: "*",

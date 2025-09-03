@@ -2,6 +2,7 @@ import "./Login.css";
 import { alertaGeneral } from "../utils/alertas";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { generarId, generarToken } from "../utils/functions";
 let URI = "http://localhost:3100/usuarios";
 
 const Login = () => {
@@ -31,12 +32,17 @@ const Login = () => {
 
   function iniciarSesion() {
     if (buscarUsuario()) {
+      localStorage.setItem("usuario", JSON.stringify(buscarUsuario()))
+      localStorage.setItem("token", generarToken())
       alertaGeneral("Bienvenido", "Será redireccionado", "success");
       redireccion("/home");
     } else {
       alertaGeneral("Error", "Credenciales incorrectas", "error");
     }
   }
+  
+  console.log(generarToken());
+  console.log(generarId())
 
   return (
     <form className="form">
