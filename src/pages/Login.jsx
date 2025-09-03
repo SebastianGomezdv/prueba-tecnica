@@ -39,9 +39,9 @@ const Login = () => {
   }
 
   return (
-    <form class="form">
-      <p class="form-title">Sign in to your account</p>
-      <div class="input-container">
+    <form className="form">
+      <p className="form-title">Sign in to your account</p>
+      <div className="input-container">
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="email"
@@ -49,17 +49,17 @@ const Login = () => {
         />
         <span></span>
       </div>
-      <div class="input-container">
+      <div className="input-container">
         <input
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Enter password"
         />
       </div>
-      <button onClick={iniciarSesion} type="button" class="submit">
+      <button onClick={iniciarSesion} type="button" className="submit">
         Sign in
       </button>
-      <p class="signup-link">
+      <p className="signup-link">
         No account?
         <a href="">Sign up</a>
       </p>
