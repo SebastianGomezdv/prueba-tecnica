@@ -1,9 +1,5 @@
-/* 
-rfce -> Crea un componente funcional regular
-rafce -> Crea un componente funcional flecha
-*/
 import "./Header.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 function Header() {
   let usuarioLogueado = JSON.parse(localStorage.getItem("usuario"));
   let navigate = useNavigate();
@@ -16,12 +12,15 @@ function Header() {
     <header className="header">
       <h2 className="header-usuario">{usuarioLogueado.name}</h2>
       <nav className="header-nav">
-        <a className="header-nav-item" href="">
+        <Link className="header-nav-item" to="">
           Home
-        </a>
-        <a className="header-nav-item" href="">
-          Por definir
-        </a>
+        </Link>
+        <Link className="header-nav-item" to="/home/productos">
+          Productos
+        </Link>
+        <Link className="header-nav-item" to="/home/clientes">
+          Clientes
+        </Link>
         <button
           onClick={cerrarSesion}
           className="header-nav-item"
