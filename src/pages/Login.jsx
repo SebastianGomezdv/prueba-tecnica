@@ -3,7 +3,7 @@ import { alertaGeneral } from "../utils/alertas";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { generarId, generarToken } from "../utils/functions";
-let URI = "http://localhost:3100/usuarios";
+import { endpoints } from "../utils/api";
 
 const Login = () => {
   const [getEmail, setEmail] = useState("");
@@ -11,10 +11,16 @@ const Login = () => {
   const [getUsuarios, setUsuarios] = useState([]);
   let redireccion = useNavigate();
 
+
+  console.log(endpoints.usuarios);
+  
   function listarUsuarios() {
-    fetch(URI)
+    fetch(endpoints.usuarios)
       .then((response) => response.json())
-      .then((data) => setUsuarios(data))
+      .then((data) => {
+        setUsuarios(data)
+        console.log(data);        
+      })
       .catch((error) => console.log(error));
   }
 
@@ -24,7 +30,7 @@ const Login = () => {
 
   function buscarUsuario() {
     let auth = getUsuarios.find(
-      (item) => getPassword == item.password && getEmail == item.email
+      (item) => getPassword == item.contraseña && getEmail == item.correo
     );
     console.log(auth);
     return auth;
@@ -32,17 +38,14 @@ const Login = () => {
 
   function iniciarSesion() {
     if (buscarUsuario()) {
-      localStorage.setItem("usuario", JSON.stringify(buscarUsuario()))
-      localStorage.setItem("token", generarToken())
+      localStorage.setItem("usuario", JSON.stringify(buscarUsuario()));
+      localStorage.setItem("token", generarToken());
       alertaGeneral("Bienvenido", "Será redireccionado", "success");
       redireccion("/home");
     } else {
       alertaGeneral("Error", "Credenciales incorrectas", "error");
     }
   }
-  
-  console.log(generarToken());
-  console.log(generarId())
 
   return (
     <form className="form">
@@ -58,7 +61,7 @@ const Login = () => {
       <div className="input-container">
         <input
           onChange={(e) => setPassword(e.target.value)}
-          type="password"
+          type="text"
           placeholder="Enter password"
         />
       </div>

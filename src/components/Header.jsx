@@ -10,7 +10,7 @@ function Header() {
   }
   return (
     <header className="header">
-      <h2 className="header-usuario">{usuarioLogueado.name}</h2>
+      <h2 className="header-usuario">{usuarioLogueado.nombre}</h2>
       <nav className="header-nav">
         <Link className="header-nav-item" to="">
           Home
