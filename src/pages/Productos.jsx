@@ -21,6 +21,7 @@ const Productos = () => {
       method: "DELETE",
     })
       .then((response) => {
+        console.log(response);        
         alertaGeneral(
           "Producto Eliminado",
           "El producto se ha eliminado de forma correcta",
