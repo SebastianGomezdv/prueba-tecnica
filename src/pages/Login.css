@@ -56,6 +56,7 @@
   width: 100%;
   border-radius: 0.5rem;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .signup-link {
@@ -67,4 +68,8 @@
 
 .signup-link a {
   text-decoration: underline;
+}
+
+.form-producto {
+  margin-bottom: 150px;
 }

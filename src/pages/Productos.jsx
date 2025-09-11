@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { endpoints } from "../utils/api";
-import { alertaGeneral } from "../utils/alertas";
+import Swal from "sweetalert2";
 const Productos = () => {
   const [getProductos, setProductos] = useState([]);
   function consultarProductos() {
@@ -17,19 +17,32 @@ const Productos = () => {
   }, []);
 
   function eliminarProducto(id) {
-    fetch(`${endpoints.productos}/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        console.log(response);        
-        alertaGeneral(
-          "Producto Eliminado",
-          "El producto se ha eliminado de forma correcta",
-          "success"
-        );
-        consultarProductos();
-      })
-      .catch((error) => console.log(error));
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${endpoints.productos}/${id}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            console.log(response);
+            Swal.fire(
+              "Eliminado",
+              "El producto se ha eliminado de forma correcta",
+              "success"
+            );
+            consultarProductos();
+          })
+          .catch((error) => console.log(error));
+      }
+    });
   }
   return (
     <div className="cards-productos">
